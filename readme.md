@@ -16,11 +16,10 @@ streamlit run app.py
 
 * Structure
 
-uav-control-center/
-│── app.py
-│── requirements.txt
-│── README.md
-│── .gitignore
-│
-├── models/
-├── data/
+uav-control-center
+── app.py
+── requirements.txt
+── README.md
+── .gitignore
+── models
+── data
