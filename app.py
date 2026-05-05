@@ -8,7 +8,9 @@ from collections import deque
 from sklearn.metrics import classification_report, confusion_matrix
 #Google-site-verification
 st.markdown("""
+<head>
 <meta name="google-site-verification" content="fSNQ93FLaleiqJOrS0bcCzuRQAugGhzcuMVgJfJpcz8" />
+</head>
 """, unsafe_allow_html=True)
 # =========================================================
 # PAGE CONFIG
