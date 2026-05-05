@@ -10,7 +10,16 @@ from sklearn.metrics import classification_report, confusion_matrix
 # =========================================================
 # PAGE CONFIG
 # =========================================================
-st.set_page_config(page_title="UAV Dashboard", layout="wide")
+st.set_page_config(
+    page_title="UAV Health Monitoring Dashboard by Vansh Sharma",
+    page_icon="🚁",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+st.markdown("""
+<meta name="description" content="AI-powered UAV Health Monitoring and Prediction System by Vansh Sharma. Real-time UAV diagnostics dashboard using machine learning.">
+""", unsafe_allow_html=True)
 st.sidebar.title("Project Info")
 
 st.sidebar.markdown("""
