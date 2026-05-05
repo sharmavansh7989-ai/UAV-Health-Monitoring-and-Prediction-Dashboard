@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 import os
 import matplotlib.pyplot as plt
+import scipy
 from collections import deque
 from sklearn.metrics import classification_report, confusion_matrix
 #Google-site-verification
@@ -12,42 +13,48 @@ st.markdown("""
 <meta name="google-site-verification" content="fSNQ93FLaleiqJOrS0bcCzuRQAugGhzcuMVgJfJpcz8" />
 </head>
 """, unsafe_allow_html=True)
+#Create AI Function
+import requests
+
+
 # =========================================================
 # PAGE CONFIG
 # =========================================================
 st.set_page_config(
     page_title="UAV Health Monitoring Dashboard by Vansh Sharma",
-
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 st.markdown("""
-<meta name="description" content="AI-powered UAV Health Monitoring and Prediction System by Vansh Sharma. Real-time UAV diagnostics dashboard using machine learning.">
+<meta name="description" content="AI-powered UAV Health Monitoring and Prediction System">
 """, unsafe_allow_html=True)
+
+# =========================================================
+# SIDEBAR
+# =========================================================
 st.sidebar.title("Project Info")
 
 st.sidebar.markdown("""
- **Resources**  
-- [GitHub Repository](https://github.com/sharmavansh7989-ai/UAV-Health-Monitoring-and-Prediction-Dashboard)  
+**Resources**  
+- [GitHub Repository](https://github.com/sharmavansh7989-ai/UAV-Health-Monitoring-and-Prediction-Dashboard)
 """)
+
+# =========================================================
+# HEADER
+# =========================================================
 st.markdown("""
-<h1 style="
-    color:#2E86C1; 
-    font-size:32px; 
-    font-weight:700; 
-    margin-bottom:4px;">
-    UAV Health Monitoring & Prediction System
+<h1 style="color:#2E86C1; font-size:32px; font-weight:700;">
+UAV Health Monitoring & Prediction System
 </h1>
 
-<p style="
-    color:#666; 
-    font-size:17px; 
-    margin:0;">
-    AI-Powered Real-Time UAV Diagnostics Dashboard 
-    <span style="color:#999;">· Vansh Sharma</span>
+<p style="color:#666; font-size:17px;">
+AI-Powered Real-Time UAV Diagnostics Dashboard · Vansh Sharma
 </p>
 """, unsafe_allow_html=True)
+
+
+#
 # =========================================================
 # SESSION STATE
 # =========================================================
@@ -249,7 +256,38 @@ def explain_anomaly(input_df):
         })
 
     return pd.DataFrame(rows).sort_values(by="z_score", ascending=False)
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
 
+    system_prompt = """
+You are an expert UAV (drone) health monitoring AI assistant.
+You analyze sensor data, detect faults, and help debug ML models.
+Give simple but technical answers.
+"""
+
+    full_prompt = system_prompt + "\nUser: " + prompt
+
+    data = {
+        "model": "gemma3",
+        "prompt": full_prompt,
+        "stream": False
+    }
+
+    try:
+        response = requests.post(url, json=data, timeout=120)
+        return response.json()["response"]
+
+    except requests.exceptions.RequestException:
+        return "Error: Ollama is not running or not reachable at localhost:11434"
+st.subheader(" UAV AI Assistant (Gemma 3)")
+
+user_input = st.text_input("Ask something about UAV system:")
+
+if st.button("Ask AI"):
+    if user_input.strip():
+        with st.spinner("Thinking..."):
+            answer = ask_ollama(user_input)
+            st.write(answer)
 # =========================================================
 # FORECAST
 # =========================================================
