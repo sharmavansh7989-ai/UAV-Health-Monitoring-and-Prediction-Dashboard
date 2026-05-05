@@ -17,21 +17,22 @@ st.sidebar.markdown("""
  **Resources**  
 - [GitHub Repository](https://github.com/sharmavansh7989-ai/UAV-Health-Monitoring-and-Prediction-Dashboard)  
 """)
-
-
-
 st.markdown("""
-<div style="text-align: center; padding: 10px 0 20px 0;">
-    <h1 style="color:#2E86C1; font-size:40px;">
+<h1 style="
+    color:#2E86C1; 
+    font-size:32px; 
+    font-weight:700; 
+    margin-bottom:4px;">
     UAV Health Monitoring & Prediction System
-    </h1>
-    <h4 style="color:gray; font-weight:400;">
-        AI-Powered Real-Time UAV Diagnostics Dashboard
-    </h4>
-    <p style="color:#555; font-size:16px;">
-        Developed by <b>Vansh Sharma</b>
-    </p>
-</div>
+</h1>
+
+<p style="
+    color:#666; 
+    font-size:17px; 
+    margin:0;">
+    AI-Powered Real-Time UAV Diagnostics Dashboard 
+    <span style="color:#999;">· Vansh Sharma</span>
+</p>
 """, unsafe_allow_html=True)
 # =========================================================
 # SESSION STATE
