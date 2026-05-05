@@ -17,6 +17,34 @@ st.markdown("""
 import requests
 
 
+
+# =========================================================
+# AI FUNCTION (FIXED)
+# =========================================================
+def ask_ollama(prompt):
+    url = "http://localhost:11434/api/generate"
+
+    system_prompt = """
+You are an expert UAV (drone) health monitoring AI assistant.
+You analyze sensor data, detect faults, and help debug ML models.
+Give simple but technical answers.
+"""
+
+    full_prompt = system_prompt + "\nUser: " + prompt
+
+    data = {
+        "model": "gemma3",
+        "prompt": full_prompt,
+        "stream": False
+    }
+
+    try:
+        response = requests.post(url, json=data, timeout=120)
+        return response.json()["response"]
+
+    except requests.exceptions.RequestException:
+        return "Error: Ollama is not running or not reachable at localhost:11434"
+
 # =========================================================
 # PAGE CONFIG
 # =========================================================
@@ -53,9 +81,22 @@ AI-Powered Real-Time UAV Diagnostics Dashboard · Vansh Sharma
 </p>
 """, unsafe_allow_html=True)
 
-
-#
 # =========================================================
+# AI SECTION
+# =========================================================
+st.subheader(" UAV AI Assistant (Gemma 3)")
+
+user_input = st.text_input("Ask something about UAV system:")
+
+if st.button("Ask AI"):
+    if user_input.strip():
+        with st.spinner("Thinking..."):
+            answer = ask_ollama(user_input)
+            st.write(answer)
+
+
+
+#========================================================
 # SESSION STATE
 # =========================================================
 if "history" not in st.session_state:
@@ -256,38 +297,7 @@ def explain_anomaly(input_df):
         })
 
     return pd.DataFrame(rows).sort_values(by="z_score", ascending=False)
-def ask_ollama(prompt):
-    url = "http://localhost:11434/api/generate"
 
-    system_prompt = """
-You are an expert UAV (drone) health monitoring AI assistant.
-You analyze sensor data, detect faults, and help debug ML models.
-Give simple but technical answers.
-"""
-
-    full_prompt = system_prompt + "\nUser: " + prompt
-
-    data = {
-        "model": "gemma3",
-        "prompt": full_prompt,
-        "stream": False
-    }
-
-    try:
-        response = requests.post(url, json=data, timeout=120)
-        return response.json()["response"]
-
-    except requests.exceptions.RequestException:
-        return "Error: Ollama is not running or not reachable at localhost:11434"
-st.subheader(" UAV AI Assistant (Gemma 3)")
-
-user_input = st.text_input("Ask something about UAV system:")
-
-if st.button("Ask AI"):
-    if user_input.strip():
-        with st.spinner("Thinking..."):
-            answer = ask_ollama(user_input)
-            st.write(answer)
 # =========================================================
 # FORECAST
 # =========================================================
