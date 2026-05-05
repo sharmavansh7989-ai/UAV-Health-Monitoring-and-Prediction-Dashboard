@@ -635,15 +635,3 @@ Dataset Size: {len(df)}
 Model: ANOMALY DETECTION  
 Status: OPERATIONAL  
 """)
-
-import pandas as pd
-
-df = pd.read_csv("data/final_uav_output.csv")
-
-# Take only first 500 rows (you can change this)
-sample_df = df.head(500)
-
-# Save new small file
-sample_df.to_csv("data/sample_uav_data.csv", index=False)
-
-print("Sample file created!")
