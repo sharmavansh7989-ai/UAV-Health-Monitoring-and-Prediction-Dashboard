@@ -11,8 +11,28 @@ from sklearn.metrics import classification_report, confusion_matrix
 # PAGE CONFIG
 # =========================================================
 st.set_page_config(page_title="UAV Dashboard", layout="wide")
-st.title("UAV Health Monitoring & Prediction Using ML")
+st.sidebar.title("Project Info")
 
+st.sidebar.markdown("""
+ **Resources**  
+- [GitHub Repository](https://github.com/sharmavansh7989-ai/UAV-Health-Monitoring-and-Prediction-Dashboard)  
+""")
+
+
+
+st.markdown("""
+<div style="text-align: center; padding: 10px 0 20px 0;">
+    <h1 style="color:#2E86C1; font-size:40px;">
+    UAV Health Monitoring & Prediction System
+    </h1>
+    <h4 style="color:gray; font-weight:400;">
+        AI-Powered Real-Time UAV Diagnostics Dashboard
+    </h4>
+    <p style="color:#555; font-size:16px;">
+        Developed by <b>Vansh Sharma</b>
+    </p>
+</div>
+""", unsafe_allow_html=True)
 # =========================================================
 # SESSION STATE
 # =========================================================
