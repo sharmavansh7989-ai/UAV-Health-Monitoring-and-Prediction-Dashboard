@@ -12,7 +12,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 # =========================================================
 st.set_page_config(
     page_title="UAV Health Monitoring Dashboard by Vansh Sharma",
-    page_icon="🚁",
+
     layout="wide",
     initial_sidebar_state="expanded"
 )
