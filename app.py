@@ -6,7 +6,10 @@ import os
 import matplotlib.pyplot as plt
 from collections import deque
 from sklearn.metrics import classification_report, confusion_matrix
-
+#Google-site-verification
+st.markdown("""
+<meta name="google-site-verification" content="ABC123XYZ">
+""", unsafe_allow_html=True)
 # =========================================================
 # PAGE CONFIG
 # =========================================================
