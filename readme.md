@@ -53,11 +53,11 @@ This system is particularly useful for:
 * **Frontend/UI**: Streamlit
 * **Backend**: Python
 * **Libraries**:
-
   * Pandas
   * NumPy
   * Scikit-learn
   * Matplotlib
+  
 * **Model Storage**: Joblib
 
 ---
@@ -69,8 +69,8 @@ UAV-Health-Monitoring-and-Prediction-Dashboard/
 │
 ├── app.py                 # Main dashboard application
 ├── models/                # Trained ML models
-├── Data/                  # Dataset (ignored in repo)
-├── screenshots/           # UI images (optional)
+├── Data/                  # Dataset 
+├── Project_Visuals/       # UI images 
 ├── requirements.txt       # Dependencies
 ├── README.md              # Project documentation
 └── .gitignore             # Ignored files
@@ -105,13 +105,13 @@ streamlit run app.py
 
 * The dataset contains UAV sensor and system parameters
 * Large files are excluded from this repository
-* You can add your own dataset in the `Data/` folder
+  
 
 ---
 
 ## Project_Screenshots
 
-*Add screenshots of your dashboard here to improve presentation*
+*screenshots of my dashboard here to improve presentation*
 
 ---
 
