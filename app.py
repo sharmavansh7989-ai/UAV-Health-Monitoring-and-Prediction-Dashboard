@@ -31,7 +31,7 @@ if "last_result" not in st.session_state:
 # =========================================================
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/sample_uav_data.csv")
+    df = pd.read_csv("Data/final_uav_output.csv")
     df = df.drop(columns=["timestamp", "time"], errors="ignore")
     return df
 
